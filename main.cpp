@@ -1,15 +1,14 @@
 #include "HelloWorld.h"
 
 //Commentaire avec //'
-int main(){
+int main(int argc, char *argv[]){
     CHelloWorld::CHelloWorld h(3);
-    h.display();
-	int n;
-	scanf("%d", &n);
-	if(h.truc)
-		h.truc;
+	int n=3;
+	if(n<argc)
+		h.display();
 	else
 	{
-		h.truc;
+		h.display();
+		h.display();
 	}
 }

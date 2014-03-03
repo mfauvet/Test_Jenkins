@@ -7,7 +7,6 @@ void CHelloWorld::CHelloWorld::display()
 {
 	int machin;
 	machin = 1;
-	MY_MACRO(machin);
 	machin = std::min(machin, 3);
 	if(this->truc==3)
 			std::cout<<"Hello"<<std::endl;
