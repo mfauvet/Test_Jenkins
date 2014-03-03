@@ -1,10 +1,20 @@
 #include "HelloWorld.h"
 
-using namespace std;
-
-void HelloWorld::display()
+/**
+* Un joli commentaire utile
+**/
+void CHelloWorld::CHelloWorld::display()
 {
+	int machin;
+	machin = 1;
+	MY_MACRO(machin);
+	machin = std::min(machin, 3);
 	if(this->truc==3)
-		cout<<"Hello"<<endl;
-	cout<<" World"<<endl;
+			std::cout<<"Hello"<<std::endl;
+	else
+	{
+		machin;
+	}
+	
+	std::cout<<" World"<<std::endl;
 }

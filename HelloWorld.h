@@ -4,11 +4,14 @@
 
 #include<iostream>
 #include <string>
-
-class HelloWorld{
-	private:
-		int truc;
+namespace CHelloWorld{
+class CHelloWorld{
 	public:
-		HelloWorld(int t): truc(t){};
+		int truc;
+		CHelloWorld(int t): truc(t){};
 		void display();
 };
+
+
+class Hello{};
+}
