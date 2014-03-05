@@ -20,12 +20,12 @@ BuildName: Win32-nmake
 IsCDash: 
 CDashVersion: 
 QueryCDashVersion: 
-DropSite: 
-DropLocation: 
+DropSite: Durian
+DropLocation: FOO
 DropSiteUser: 
 DropSitePassword: 
 DropSiteMode: 
-DropMethod: http
+DropMethod: xmlrpc
 TriggerSite: 
 ScpCommand: SCPCOMMAND-NOTFOUND
 
@@ -58,7 +58,7 @@ UpdateOptions:
 UpdateType: git
 
 # Compiler info
-Compiler: C:/Program Files (x86)/Microsoft Visual Studio 10.0/VC/bin/cl.exe
+Compiler: c:/Program Files (x86)/Microsoft Visual Studio 10.0/VC/bin/cl.exe
 
 # Dynamic analysis (MemCheck)
 PurifyCommand: 
