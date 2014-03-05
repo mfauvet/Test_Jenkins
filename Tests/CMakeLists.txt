@@ -4,7 +4,7 @@ ADD_EXECUTABLE(
 	../HelloWorld.cpp
 	../main.cpp
 )
-#ADD_TEST(test1 mon_executable 5)
+ADD_TEST(test1 mon_executable 5)
 #ADD_TEST(test2 ${CMAKE_COMMAND} -E compare_files obtained.txt expected.txt)
 #ADD_TEST(test3 ${CMAKE_COMMAND} -E compare_files 1secSinusOscillator.csv 1secSinusOscillator-obtained.csv)
 add_test(NAME runtestprog
