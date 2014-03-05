@@ -4,8 +4,7 @@
 * Un joli commentaire utile
 **/
 void CHelloWorld::CHelloWorld::display()
-{
-	int machin;
+{	int machin;
 	machin = 1;
 	if(this->truc==3)
 			std::cout<<"Hello";
