@@ -4,5 +4,3 @@ PROJECT(Test_Hello_World)
 SUBDIRS(Tests)
 
 ENABLE_TESTING()
-#INCLUDE(DartConfig.cmake)
-#INCLUDE(Dart)
