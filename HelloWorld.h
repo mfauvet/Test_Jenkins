@@ -12,5 +12,6 @@ class CHelloWorld{
 		void display();
 };
 
+
 class Hello{};
 }
