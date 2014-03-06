@@ -2,4 +2,5 @@ CMAKE_MINIMUM_REQUIRED(VERSION 2.8)
 #Déclaration du projet
 PROJECT(Test_Hello_World)
 SUBDIRS(Tests)
+
 ENABLE_TESTING()
