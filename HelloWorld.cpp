@@ -1,5 +1,4 @@
 #include "HelloWorld.h"
-
 /**
 * Un joli commentaire utile
 **/
