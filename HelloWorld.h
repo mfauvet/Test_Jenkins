@@ -4,14 +4,13 @@
 
 #include<iostream>
 #include <string>
-namespace CHelloWorld{
-class CHelloWorld{
+class HelloWorld{
 	public:
 		int truc;
-		CHelloWorld(int t): truc(t){};
+		HelloWorld(int t): truc(t){};
 		void display();
 };
 
+void independentMethod(int &i);
 
 class Hello{};
-}

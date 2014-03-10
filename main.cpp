@@ -2,9 +2,9 @@
 #include <iostream>
 #include <fstream>
 using namespace std;
-//Commentaire avec //'
+//Commentaire avec '//'
 int main(int argc, char *argv[]){
-    CHelloWorld::CHelloWorld h(3);
+    HelloWorld h= HelloWorld(3);
 	int n=3;
 	if(n<argc)
 		h.display();
