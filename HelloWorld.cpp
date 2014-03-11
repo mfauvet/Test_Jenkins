@@ -1,9 +1,13 @@
 #include "HelloWorld.h"
 
+HelloWorld::HelloWorld(){
+	truc=0;
+}
+
 /**
 * Un joli commentaire utile
 **/
-void HelloWorld::HelloWorld::display()
+void HelloWorld::display()
 {	int machin;
 	machin = 1;
 	if(this->truc==3)

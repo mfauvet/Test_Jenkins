@@ -33,13 +33,29 @@ target_link_libraries(Test_Hello_World project1_lib)
 # Testing
 ################################
 if (test)
-  # This adds another subdirectory, which has 'project(gtest)'.
-#  add_subdirectory(gtest-1.6.0)
-#  enable_testing()
+	enable_testing()
+	subdirs(Tests)
+	
+	
+	##############
+	# Unit Tests
+	##############
+	# This adds another subdirectory, which has 'project(gtest)'.
+	add_subdirectory(gtest-1.6.0)
+ 
+	# Include the gtest library. gtest_SOURCE_DIR is available due to
+	# 'project(gtest)' above.
+	include_directories(${gtest_SOURCE_DIR}/include)
+	
+	add_executable(runUnitTests test_gtest.cpp)
+	 # Standard linking to gtest stuff.
+	target_link_libraries(runUnitTests gtest gtest_main)
 
-  # Include the gtest library. gtest_SOURCE_DIR is available due to
-  # 'project(gtest)' above.
-#  include_directories(${gtest_SOURCE_DIR}/include)
+	# Extra linking for the project.
+	target_link_libraries(runUnitTests project1_lib)
 
+	# This is so you can do 'make test' to see all your tests run, instead of
+	# manually running the executable runUnitTests to see those specific tests.
+	add_test(NAME that-test-I-made COMMAND runUnitTests)
 
 endif()

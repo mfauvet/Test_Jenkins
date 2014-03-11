@@ -7,6 +7,7 @@
 class HelloWorld{
 	public:
 		int truc;
+		HelloWorld();
 		HelloWorld(int t): truc(t){};
 		void display();
 };
