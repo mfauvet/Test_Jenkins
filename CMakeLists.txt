@@ -86,15 +86,15 @@ if (test)
 	# 'project(gtest)' above.
 	include_directories(${gtest_SOURCE_DIR}/include)
 	
-	add_executable(runUnitTests test_gtest.cpp)
+	add_executable(${CMAKE_BINARY_DIR}/runUnitTests test_gtest.cpp)
 	 # Standard linking to gtest stuff.
-	target_link_libraries(runUnitTests gtest gtest_main)
+	target_link_libraries(${CMAKE_BINARY_DIR}/runUnitTests gtest gtest_main)
 
 	# Extra linking for the project.
-	target_link_libraries(runUnitTests project1_lib)
+	target_link_libraries(${CMAKE_BINARY_DIR}/runUnitTests project1_lib)
 
 	# This is so you can do 'make test' to see all your tests run, instead of
 	# manually running the executable runUnitTests to see those specific tests.
-	add_test(NAME that-test-I-made COMMAND runUnitTests)
+	add_test(NAME that-test-I-made COMMAND ${CMAKE_BINARY_DIR}/runUnitTests)
 
 endif()
