@@ -75,8 +75,7 @@ target_link_libraries(Test_Hello_World project1_lib)
 if (test)
 	enable_testing()
 	subdirs(Tests)
-	
-	
+
 	##############
 	# Unit Tests
 	##############
