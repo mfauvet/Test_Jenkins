@@ -2,17 +2,57 @@ cmake_minimum_required(VERSION 2.8)
 set(CMAKE_LEGACY_CYGWIN_WIN32,1)
 # Options. Turn on with 'cmake -Dmyvarname=ON'.
 option(test "Build all tests." OFF) # Makes boolean 'test' available.
-
+option(squishcoco "Build all tests." OFF) # Makes boolean 'test' available.
+option(gcovr "Build all tests." OFF) # Makes boolean 'test' available.
+option(bullseyes "Build all tests." OFF) # Makes boolean 'test' available.
 # Make PROJECT_SOURCE_DIR, PROJECT_BINARY_DIR, and PROJECT_NAME available.
 set(PROJECT_NAME Test_Hello_World)
 project(${PROJECT_NAME})
-SET(CMAKE_CXX_FLAGS "-g -O0 -fprofile-arcs -ftest-coverage")
-set(CMAKE_MODULE_PATH ${PROJECT_SOURCE_DIR}/CMakeModules)
-if(CMAKE_COMPILER_IS_GNUCXX)
-    include(CodeCoverage.cmake)
-    SETUP_TARGET_FOR_COVERAGE_COBERTURA(Test_coverage Test_Hello_World coverage)
+
+if(squishcoco)
+	#####################
+	# Try SquishCoco
+	#####################
+	SET(COVERAGE_FLAGS "--cs-on --cs-count")
+	SET( CMAKE_CXX_FLAGS_COVERAGE
+	"${CMAKE_C_FLAGS_RELEASE} ${COVERAGE_FLAGS}" CACHE STRING
+	"Flags used by the C++ compiler during coverage builds."
+	FORCE )
+	SET( CMAKE_C_FLAGS_COVERAGE
+	"${CMAKE_CXX_FLAGS_RELEASE} ${COVERAGE_FLAGS}" CACHE STRING
+	"Flags used by the C compiler during coverage builds."
+	FORCE )
+	SET( CMAKE_EXE_LINKER_FLAGS_COVERAGE
+	"${CMAKE_EXE_LINKER_FLAGS_RELEASE} ${COVERAGE_FLAGS}" CACHE STRING
+	"Flags used for linking binaries during coverage builds."
+	FORCE )
+	SET( CMAKE_SHARED_LINKER_FLAGS_COVERAGE
+	"${CMAKE_SHARED_LINKER_FLAGS_RELEASE} ${COVERAGE_FLAGS}" CACHE STRING
+	"Flags used by the shared libraries linker during coverage builds."
+	FORCE )
+	SET( CMAKE_STATIC_LINKER_FLAGS_COVERAGE
+	"${CMAKE_STATIC_LINKER_FLAGS_RELEASE} ${COVERAGE_FLAGS}" CACHE STRING
+	"Flags used by the static libraries linker during coverage builds."
+	FORCE )
+	MARK_AS_ADVANCED(
+	CMAKE_CXX_FLAGS_COVERAGE
+	CMAKE_C_FLAGS_COVERAGE
+	CMAKE_EXE_LINKER_FLAGS_COVERAGE
+	CMAKE_SHARED_LINKER_FLAGS_COVERAGE
+	CMAKE_STATIC_LINKER_FLAGS_COVERAGE
+	COMPILE_DEFINITIONS_COVERAGE
+	)
+	######End of try with squishcoco#########
 endif()
 
+if(gcovr)
+	SET(CMAKE_CXX_FLAGS "-g -O0 -fprofile-arcs -ftest-coverage")
+	set(CMAKE_MODULE_PATH ${PROJECT_SOURCE_DIR}/CMakeModules)
+	if(CMAKE_COMPILER_IS_GNUCXX)
+		include(CodeCoverage.cmake)
+		SETUP_TARGET_FOR_COVERAGE_COBERTURA(Test_coverage Test_Hello_World coverage)
+	endif()
+endif()
 #set(CMAKE_CXX_FLAGS "-g -Wall")
 
 # If you want your own include/ directory, set this, and then you can do
