@@ -5,7 +5,7 @@ if(HAD_ERROR)
 endif()
 
 execute_process(COMMAND ${CMAKE_COMMAND} -E compare_files
-    ${CMAKE_BINARY_DIR}/obtained.txt expected.txt
+    ${CMAKE_BINARY_DIR}/obtained.txt ${SOURCEDIR}/expected.txt
     RESULT_VARIABLE DIFFERENT)
 if(DIFFERENT)
     #execute_process(COMMAND svn diff expected.txt)

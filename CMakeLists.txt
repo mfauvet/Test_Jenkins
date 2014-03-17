@@ -1,15 +1,14 @@
 cmake_minimum_required(VERSION 2.8)
 set(CMAKE_LEGACY_CYGWIN_WIN32,1)
 # Options. Turn on with 'cmake -Dmyvarname=ON'.
-option(test "Build all tests." OFF) # Makes boolean 'test' available.
-option(squishcoco "Build all tests." OFF) # Makes boolean 'test' available.
-option(gcovr "Build all tests." OFF) # Makes boolean 'test' available.
-option(bullseyes "Build all tests." OFF) # Makes boolean 'test' available.
-# Make PROJECT_SOURCE_DIR, PROJECT_BINARY_DIR, and PROJECT_NAME available.
-set(PROJECT_NAME Test_Hello_World)
-project(${PROJECT_NAME})
+OPTION(TEST "Build all tests." OFF) # Makes boolean 'test' available.
+OPTION(SQUISHCOCO "Build all tests." OFF) # Makes boolean 'test' available.
+OPTION(GCOVR "Build all tests." OFF) # Makes boolean 'test' available.
+OPTION(BULLSEYES "Build all tests." OFF) # Makes boolean 'test' available.
 
-if(squishcoco)
+project(Test_Hello_World)
+
+IF(SQUISHCOCO)
 	#####################
 	# Try SquishCoco
 	#####################
@@ -43,16 +42,16 @@ if(squishcoco)
 	COMPILE_DEFINITIONS_COVERAGE
 	)
 	######End of try with squishcoco#########
-endif()
+ENDIF()
 
-if(gcovr)
+IF(GCOVR)
 	SET(CMAKE_CXX_FLAGS "-g -O0 -fprofile-arcs -ftest-coverage")
 	set(CMAKE_MODULE_PATH ${PROJECT_SOURCE_DIR}/CMakeModules)
-	if(CMAKE_COMPILER_IS_GNUCXX)
+	IF(CMAKE_COMPILER_IS_GNUCXX)
 		include(CodeCoverage.cmake)
 		SETUP_TARGET_FOR_COVERAGE_COBERTURA(Test_coverage Test_Hello_World coverage)
-	endif()
-endif()
+	ENDIF()
+ENDIF()
 #set(CMAKE_CXX_FLAGS "-g -Wall")
 
 # If you want your own include/ directory, set this, and then you can do
@@ -67,34 +66,35 @@ add_executable(Test_Hello_World main.cpp)
 # Key idea: SEPARATE OUT your main() function into its own file so it can be its
 # own executable. Separating out main() means you can add this library to be
 # used elsewhere.
-target_link_libraries(Test_Hello_World project1_lib)
+TARGET_LINK_LIBRARIES(Test_Hello_World project1_lib)
 
 ################################
 # Testing
 ################################
-if (test)
-	enable_testing()
-	subdirs(Tests)
+IF (TEST)
+	ENABLE_TESTING()
+	SUBDIRS(Tests)
 
-	##############
-	# Unit Tests
-	##############
-	# This adds another subdirectory, which has 'project(gtest)'.
-	add_subdirectory(gtest-1.6.0)
- 
-	# Include the gtest library. gtest_SOURCE_DIR is available due to
-	# 'project(gtest)' above.
-	include_directories(${gtest_SOURCE_DIR}/include)
-	
-	add_executable(runUnitTests test_gtest.cpp)
-	 # Standard linking to gtest stuff.
-	target_link_libraries(runUnitTests gtest gtest_main)
+	IF(UNIX)
+		##############
+		# Unit Tests
+		##############
+		# This adds another subdirectory, which has 'project(gtest)'.
+		add_subdirectory(gtest-1.6.0)
+	 
+		# Include the gtest library. gtest_SOURCE_DIR is available due to
+		# 'project(gtest)' above.
+		include_directories(${gtest_SOURCE_DIR}/include)
+		
+		add_executable(runUnitTests test_gtest.cpp)
+		 # Standard linking to gtest stuff.
+		TARGET_LINK_LIBRARIES(runUnitTests gtest gtest_main)
 
-	# Extra linking for the project.
-	target_link_libraries(runUnitTests project1_lib)
-
+		# Extra linking for the project.
+		TARGET_LINK_LIBRARIES(runUnitTests project1_lib)
 	# This is so you can do 'make test' to see all your tests run, instead of
 	# manually running the executable runUnitTests to see those specific tests.
-	add_test(NAME that-test-I-made COMMAND runUnitTests)
+	ADD_TEST(NAME that-test-I-made COMMAND runUnitTests)
+	ENDIF()
 
-endif()
+ENDIF()
