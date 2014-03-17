@@ -46,9 +46,9 @@ ENDIF()
 
 IF(GCOVR)
 	SET(CMAKE_CXX_FLAGS "-g -O0 -fprofile-arcs -ftest-coverage")
-	set(CMAKE_MODULE_PATH ${PROJECT_SOURCE_DIR}/CMakeModules)
+	SET(CMAKE_MODULE_PATH ${PROJECT_SOURCE_DIR}/CMakeModules)
 	IF(CMAKE_COMPILER_IS_GNUCXX)
-		include(CodeCoverage.cmake)
+		INCLUDE(CodeCoverage.cmake)
 		SETUP_TARGET_FOR_COVERAGE_COBERTURA(Test_coverage Test_Hello_World coverage)
 	ENDIF()
 ENDIF()
@@ -75,7 +75,7 @@ IF (TEST)
 	ENABLE_TESTING()
 	SUBDIRS(Tests)
 
-	IF(UNIX)
+	IF(CMAKE_COMPILER_IS_GNUCXX)
 		##############
 		# Unit Tests
 		##############
@@ -92,9 +92,9 @@ IF (TEST)
 
 		# Extra linking for the project.
 		TARGET_LINK_LIBRARIES(runUnitTests project1_lib)
-	# This is so you can do 'make test' to see all your tests run, instead of
-	# manually running the executable runUnitTests to see those specific tests.
-	ADD_TEST(NAME that-test-I-made COMMAND runUnitTests)
+		# This is so you can do 'make test' to see all your tests run, instead of
+		# manually running the executable runUnitTests to see those specific tests.
+		ADD_TEST(NAME that-test-I-made COMMAND runUnitTests)
 	ENDIF()
 
 ENDIF()
