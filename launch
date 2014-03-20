@@ -1,0 +1,8 @@
+mkdir minGW-build
+cd minGW-build
+cmake .. -G"MinGW Makefiles" -DCMAKE_BUILD_TYPE="Debug" -DPYTHON_EXECUTABLE="C:/Python27/python.exe" -DGCOVR_PATH="C:/Python27/Scripts/gcovr" -Dtest=ON -Dgcovr=ON
+make
+make Test_coverage
+make Tests
+ctest -T test
+read truc
