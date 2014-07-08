@@ -8,6 +8,11 @@ OPTION(BULLSEYES "Build all tests." OFF) # Makes boolean 'test' available.
 
 project(Test_Hello_World)
 
+<<<<<<< Updated upstream
+=======
+SET(HELLO_SOURCE_DIR ${CMAKE_SOURCE_DIR})
+
+>>>>>>> Stashed changes
 IF(SQUISHCOCO)
 	#####################
 	# Try SquishCoco
